@@ -1,28 +1,25 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.4'
-
 gem 'rails-api'
+gem 'mysql2', '0.3.18'
+gem 'jbuilder'
+gem 'sorcery'
+gem 'carrierwave'
+gem 'config'
 
-gem 'spring', :group => :development
+group :production do
+  gem 'unicorn'
+end
 
-
-gem 'mysql2'
-
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'awesome_print'
+  gem 'did_you_mean'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'bullet'
+  gem 'spring'
+end
