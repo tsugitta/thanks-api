@@ -6,6 +6,7 @@ gem 'mysql2', '0.3.18'
 gem 'jbuilder'
 gem 'sorcery'
 gem 'carrierwave'
+gem 'rmagick'
 gem 'config'
 
 group :production do

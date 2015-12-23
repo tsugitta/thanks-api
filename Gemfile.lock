@@ -141,6 +141,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
     rake (10.4.2)
+    rmagick (2.15.4)
     slop (3.6.0)
     sorcery (0.9.1)
       bcrypt (~> 3.1)
@@ -183,6 +184,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.4)
   rails-api
+  rmagick
   sorcery
   spring
   unicorn
