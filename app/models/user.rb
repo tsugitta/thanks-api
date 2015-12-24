@@ -21,11 +21,19 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :name_includes, -> (keyword) { where('name LIKE ?', "%keyword%") }
-  scope :id_includes, -> (keyword) { where('thanks_id LIKE ?', "%keyword%") }
+  scope :name_like, -> (keyword) { where('name LIKE ? OR thanks_id LIKE ?', "%#{keyword.downcase}%", "%#{keyword.downcase}%") }
+  scope :except_ids, -> (ids) { where.not(id: ids) }
 
-  def self.search_by(keyword)
-    User.name_includes(keyword).id_includes(keyword)
+  def self.search_by(user, keyword)
+    User.except_ids(user.timeline_user_ids).name_like(keyword)
+  end
+
+  def timeline_user_ids
+    followee_user_ids + [id]
+  end
+
+  def followee_user_ids
+    followees.pluck(:id)
   end
 
   def is_following?(user)

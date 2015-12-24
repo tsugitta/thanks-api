@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     end
 
     resources :user_sessions, only: [:create, :destroy] do
-      collection do
-        post 'create_with_token'
-      end
+      post 'create_with_token', on: :collection
     end
 
     resources :thanks, only: [:index, :create, :destroy]
-    resources :relationships, only: [:create, :destroy]
+    resources :relationships, only: :create do
+      delete :destroy, on: :collection
+    end
   end
 end

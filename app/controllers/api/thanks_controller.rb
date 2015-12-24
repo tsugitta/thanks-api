@@ -3,7 +3,7 @@ class Api::ThanksController < ApiController
   before_action :set_thank, only: :destroy
 
   def index
-    @thanks = Thank.includes(:user)
+    @thanks = Thank.timeline_for(@current_user)
   end
 
   def create

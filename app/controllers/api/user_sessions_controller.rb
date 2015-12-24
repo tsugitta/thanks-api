@@ -1,5 +1,5 @@
 class Api::UserSessionsController < ApiController
-  skip_before_action :require_valid_token, only: [:create, :create_with_token]
+  skip_before_action :set_current_user, only: [:create, :create_with_token]
 
   def create
     if @user = login(user_session_params)

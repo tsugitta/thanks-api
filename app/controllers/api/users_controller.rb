@@ -22,7 +22,7 @@ class Api::UsersController < ApiController
   end
 
   def search
-    @users = User.search_by(params[:keyword])
+    @users = User.search_by(@current_user, params[:keyword])
   end
 
   def current_user
