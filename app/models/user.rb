@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   scope :except_ids, -> (ids) { where.not(id: ids) }
 
   def self.search_by(user, keyword)
-    User.except_ids(user.timeline_user_ids).name_like(keyword)
+    User.except_ids([user.id]).name_like(keyword)
   end
 
   def timeline_user_ids
