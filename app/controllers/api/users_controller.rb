@@ -1,7 +1,7 @@
 class Api::UsersController < ApiController
   skip_before_action :require_valid_token, only: [:create]
   before_action :set_user, only: [:show, :update]
-  before_action :set_current_user, only: [:search]
+  # before_action :set_current_user, only: [:search]
 
   def show
   end
