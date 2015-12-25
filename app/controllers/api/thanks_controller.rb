@@ -8,7 +8,7 @@ class Api::ThanksController < ApiController
 
   def create
     @current_user.thanks.create(thank_params)
-    @thanks = Thank.includes(:user)
+    @thanks = Thank.timeline_for(@current_user)
   end
 
   def destroy
