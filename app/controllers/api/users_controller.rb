@@ -1,7 +1,6 @@
 class Api::UsersController < ApiController
-  skip_before_action :require_valid_token, only: [:create]
+  skip_before_action :set_current_user, only: :create
   before_action :set_user, only: [:show, :update]
-  # before_action :set_current_user, only: [:search]
 
   def show
   end
@@ -10,6 +9,7 @@ class Api::UsersController < ApiController
     @user = User.new(user_params)
     if @user.save
       @auth_token = @user.auth_tokens.last
+      @current_user = @user
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end
